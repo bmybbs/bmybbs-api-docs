@@ -1,0 +1,33 @@
+==用户接口==
+{|
+|-
+! 接口
+! 说明
+|-
+| [https://github.com/bmybbs/api/wiki/user-login /user/login] || 登录
+|-
+| [https://github.com/bmybbs/api/wiki/user-logout /user/logout] || 注销
+|-
+| [https://github.com/bmybbs/api/wiki/user-query /user/query] || 查询
+|-
+| [https://github.com/bmybbs/api/wiki/user-checksession /user/checksession] || 校验 session
+|}
+
+
+==文章接口==
+{|
+|-
+! 接口
+! 说明
+|-
+| [https://github.com/bmybbs/api/wiki/article-list /article/list] || 文章列表
+|}
+
+==版面接口==
+{|
+|-
+! 接口
+! 说明
+|-
+| [https://github.com/bmybbs/api/wiki/board-list /board/list] || 版面列表
+|}
