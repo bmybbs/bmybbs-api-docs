@@ -1,0 +1,45 @@
+==说明==
+API 登录功能，成功登录将会返回 <code>SessionID</code> 和 <code>Token</code> 两个字段。其中
+
+* <code>SessionID</code>: 将作为后续会话中识别用户身份的一个凭据，某些接口，例如发表文章，发表站内信，将需要同时提供 userid 和 sessid 两个 URL 参数。
+* <code>Token</code>: 将作为后续会话中涉及 HTTP Post 接口及敏感接口必填的字段。
+
+==URL==
+<u>/user/login</u>
+
+==请求参数==
+{|
+|-
+! 参数字段
+! 必选
+! 说明
+|-
+| userid
+| true
+| 合法的用户 id
+|-
+| passwd
+| true
+| 合法的用户密码
+|-
+| appkey
+| true
+| 合法的应用 id
+|}
+
+==返回结果==
+若登录成功，返回如下格式：
+
+<code>
+{
+    "errcode":0,
+    "UserID": "",
+    "SessionID": "",
+    "Token": ""
+}
+</code>
+
+否则仅包含错误码。
+
+==注意事项==
+系统最多保存来自三个不同 appkey 的会话信息。
