@@ -1,0 +1,192 @@
+==说明==
+
+==URL==
+<u>/article/list</u>
+
+==请求方式==
+HTTP GET
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="4"|十大
+| type
+| true
+| 设为 top10
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|-
+| rowspan="4"|分区热门
+| type
+| true
+| 设为 sectop
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|-
+| rowspan="6"|美文推荐
+| type
+| true
+| 设为 commend
+|-
+| startnum
+| true
+|
+|-
+| count
+| true
+|
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|-
+| rowspan="6"|通知公告
+| type
+| true
+| 设为 announce
+|-
+| startnum
+| true
+|
+|-
+| count
+| true
+|
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|-
+| rowspan="8"|版面文章
+| type
+| true
+| 设为 board
+|-
+| board
+| true
+|
+|-
+| btype
+| true
+|
+|-
+| startnum
+| true
+|
+|-
+| count
+| true
+|
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|-
+| rowspan="8"|同主题文章
+| type
+| true
+| 设为 thread
+|-
+| board
+| true
+|
+|-
+| thread
+| true
+|
+|-
+| startnum
+| true
+|
+|-
+| count
+| true
+|
+|-
+| userid
+| false
+|
+|-
+| sessid
+| false
+|
+|-
+| appkey
+| true
+|
+|}
+
+==返回结果==
+若登录成功，返回如下格式：
+
+<code>
+{
+	"errcode": 0,
+	"articlelist": [
+		{
+			"type": 1,
+			"board": "newlife",
+			"aid": 0,
+			"tid": 1382846739,
+			"title": "人比人，气死人",
+			"author": "",
+			"th_num": 31,
+			"mark": 0
+		}, ...
+	]
+}
+</code>
+
+否则仅包含错误码。
+
+==注意事项==
+
