@@ -1,4 +1,5 @@
 ==说明==
+返回文章列表。
 
 ==URL==
 <u>/article/list</u>
@@ -14,89 +15,45 @@ HTTP GET
 ! 必选
 ! 说明
 |-
-| rowspan="4"|十大
+| rowspan="1"|十大
 | type
 | true
 | 设为 top10
 |-
-| userid
-| false
-|
-|-
-| sessid
-| false
-|
-|-
-| appkey
-| true
-|
-|-
-| rowspan="4"|分区热门
+| rowspan="2"|分区热门
 | type
 | true
 | 设为 sectop
 |-
-| userid
-| false
-|
-|-
-| sessid
-| false
-|
-|-
-| appkey
+| secstr
 | true
-|
+| 分区名，值为```0123456789GNHAC```中一个字符
 |-
-| rowspan="6"|美文推荐
+| rowspan="3"|美文推荐
 | type
 | true
 | 设为 commend
 |-
-| startnum
-| true
-|
-|-
 | count
-| true
-|
-|-
-| userid
 | false
-|
+| 希望查询的文章数量，默认为20篇。实际文章数可能小于count，所以最终返回文章数以实际情况为准。
 |-
-| sessid
+| startnum
 | false
-|
+| 从所有美文的第几篇起返回。默认为从最新文章起，倒推count篇，若总文章不足count篇，则从第一篇（最老一篇）开始输出。
 |-
-| appkey
-| true
-|
-|-
-| rowspan="6"|通知公告
+| rowspan="3"|通知公告
 | type
 | true
 | 设为 announce
 |-
-| startnum
-| true
-|
-|-
 | count
-| true
-|
-|-
-| userid
 | false
-|
+| 希望查询的文章数量，默认为20篇。实际文章数可能小于count，所以最终返回文章数以实际情况为准。
 |-
-| sessid
+| startnum
 | false
-|
-|-
-| appkey
-| true
-|
+| 从所有美文的第几篇起返回。默认为从最新文章起，倒推count篇，若总文章不足count篇，则从第一篇（最老一篇）开始输出。
 |-
 | rowspan="8"|版面文章
 | type
@@ -173,18 +130,88 @@ HTTP GET
 	"errcode": 0,
 	"articlelist": [
 		{
-			"type": 1,
-			"board": "newlife",
-			"aid": 0,
-			"tid": 1382846739,
-			"title": "人比人，气死人",
-			"author": "",
-			"th_num": 31,
-			"mark": 0
+			"type": 0,
+			"aid": 1385540136,
+			"tid": 1385540136,
+			"th_num": 1,
+			"mark": 4,
+			"board": "sysop",
+			"title": "[公告]任命sysop 版版主 liuche",
+			"author": "XJTU-XANET" 
 		}, ...
 	]
 }
 ```
+
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示查询成功；否则为错误码，并且不再返回其它字段。
+|-
+| articlelist
+| Json array
+| 文章列表
+|-
+| type
+| int
+| 文章类型
+*0 为一般文章
+*1 为主题文章
+|-
+| aid
+| int
+| 文章ID
+|-
+| tid
+| int
+| 主题ID
+|-
+| th_num
+| int
+| 同主题文章数
+|-
+| mark
+| int
+| 文章标记，以2进制表示，从低到高依次的含义为：
+# FH_READ 0x1		//whether the file has been viewed if it is a mail
+# FH_HIDE 0x2		//whether the file has been set as hidden in backnumber
+# FH_MARKED 0x4
+# FH_DIGEST 0x8		//Has been put into digest
+# FH_NOREPLY 0x10
+# FH_ATTACHED 0x20	//Has attachments
+# FH_DEL 0x40		//Marked to be deleted
+# FH_SPEC 0x80		//Will be put to 0Announce, and this flag will be clear then
+# FH_INND 0x100		//write into innd/out.bntp
+# FH_ANNOUNCE 0x200	//have been put into 0Announce
+# FH_1984 0x400		//have been checked to see if there is any ...
+# FH_ISDIGEST 0x800	//whether it is a digest file, i.e., filename is start with G., but not M.
+# FH_REPLIED 0x1000	//this mail has been replied
+# FH_ALLREPLY 0x2000	//this article can be re by all...
+# FH_MATH 0x4000		//this article contains itex math functions.
+# FH_DANGEROUS 0x8000
+# FILE_TOP1 0x10000     //hace  
+# FILE_ISTOP1 0x20000   //slowaction  
+# FH_MINUSDEL 0x40000	//add by mintbaggio for minus-postnums delte
+# FH_MAILREPLY 0x80000 //add by macintosh for reply mail to author 
+|-
+| board
+| string
+| 文章所属版面（英文）名
+|-
+| title
+| string
+| 文章标题
+|-
+| author
+| string
+| 文章作者 ID
+|}
 
 否则仅包含错误码。
 
