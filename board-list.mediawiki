@@ -96,7 +96,7 @@ HTTP GET
 |-
 | errcode
 | int
-| 0表示成功登陆；否则为错误码，并且不再返回其它字段。
+| 0表示查询成功；否则为错误码，并且不再返回其它字段。
 |-
 | boardlist
 | Json array
