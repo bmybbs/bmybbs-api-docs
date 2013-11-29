@@ -1,0 +1,156 @@
+==说明==
+获得版面列表，包括用户收藏版面列表和分区全部版面列表。
+用户无权访问的版面将不会被返回。
+==URL==
+<u>/board/list</u>
+
+==请求方式==
+HTTP GET
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="5"|收藏夹
+| secstr
+| true
+| 设为 fav
+|-
+| userid
+| true
+| 用户名
+|-
+| sessid
+| true
+| 用户 session ID
+|-
+| appkey
+| true
+| 应用标识
+|-
+| sortmode
+| false
+| 版面列表排序方式，取值1、2、3：
+*1 按版面名排序
+*2 按版面人气排序（默认方式）
+*3 按版面在线人数排序
+|-
+| rowspan="5"|分区版面列表
+| secstr
+| true
+| 分区名，值为``0123456789GNHAC``中的一个字符
+|-
+| userid
+| true
+| 用户名
+|-
+| sessid
+| true
+| 用户 Session ID
+|-
+| appkey
+| true
+| 应用标识
+|-
+| sortmode
+| false
+| 版面列表排序方式，取值1、2、3：
+*1 按版面名排序
+*2 按版面人气排序（默认方式）
+*3 按版面在线人数排序
+|}
+
+==返回结果==
+若查询成功，返回如下格式：
+
+```
+{
+	"errcode": 0,
+	"boardlist": [ 
+		{ 
+			"name": "sysop", 
+			"zh_name": "○ 站长的工作室", 
+			"type": "本站", 
+			"bm": [ "SYSOP", "liuche" ], 
+			"unread": 1,
+			"voting": 0,
+			"article_num": 11,
+			"score": 0,
+			"inboard_num": 0,
+			"secstr": "0",
+			"keyword": "" 
+		}, ...
+	]
+}
+```
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示成功登陆；否则为错误码，并且不再返回其它字段。
+|-
+| boardlist
+| Json array
+| 版面列表。
+|-
+| name
+| string
+| 版面名
+|-
+| zh_name
+| string
+| 版面中文名（UTF-8格式）
+|-
+| type
+| string
+| 版面类型
+|-
+| bm
+| string array
+| 版主用户ID
+|-
+| unread
+| int
+| 版面最新文章是否已读
+*0 已读
+*1 未读
+|-
+| voting
+| int
+| 版面是否正在举行投票
+*0 未进行投票
+*1 正在进行投票
+|-
+| article_num
+| int
+| 版面总文章数
+|-
+| score
+| int
+| 版面人气值
+|-
+| inboard_num
+| int
+| 版面当前在线人数
+|-
+| secstr
+| string
+| 版面所属分区
+|-
+| keyword
+| string
+| 版面关键词
+|}
+
+否则仅包含错误码。
+
+==注意事项==
