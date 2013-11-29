@@ -1,0 +1,134 @@
+==说明==
+以HTML格式返回带有 ANSI 颜色信息的文章内容。颜色以标签 &lt;span style=\"color:XXX;\"> &lt;/span>' 实现。
+
+==URL==
+<u>/article/getHTMLContent</u>
+
+==请求方式==
+HTTP GET
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="8"|获取文章内容
+| aid
+| true
+| 查询文章的ID
+|-
+| board
+| true
+| 查询文章所在版面名
+|-
+| num
+| false
+| 该文章在其板面的文章序号，从0开始，填写该参数可以显著加快文章内容的查找。
+|-
+| userid
+| true
+| 当前登录用户的 ID
+|-
+| sessid
+| true
+| 当前用户的 session ID
+|-
+| appkey
+| true
+| 当前使用的 APP 标识
+|}
+
+==返回结果==
+若登录成功，返回如下格式：
+
+```
+{ 
+	"errcode": 0, 
+	"attach": [ 
+		{ 
+			"link": "http:\/\/bbs.xjtu.edu.cn:8080\/sysop\/M.1385729278.A\/448\/api_sign.c", 
+			"size": 2180
+		}, { 
+			"link": "http:\/\/bbs.xjtu.edu.cn:8080\/sysop\/M.1385729278.A\/2663\/api_sign.h", 
+			"size": 1219 
+		} 
+	], 
+	"can_edit": 1, 
+	"can_delete": 1, 
+	"can_reply": 1, 
+	"board": "sysop", 
+	"author": "SYSOP", 
+	"thread": 1385729278, 
+	"num": 12, 
+	"content": "<article>\n发信人: SYSOP (SYSOP), 信区: sysop<br \/>\n标  题: 彩色文字<br \/>\n发信站: 兵马俑BBS (Fri Nov 29 20:47:58 2013), 本站(bbs.xjtu.edu.cn)<br \/>\n<br \/>\n     <span style=\"color:black;\">   黑色   <\/span><span style=\"color:black;background-color:gray;\">                <br \/>\n<br \/>\n     <\/span><span style=\"color:red;\">   红色                       <br \/>\n<br \/>\n     <\/span><span style=\"color:green;\">   绿色                    <br \/>\n<br \/>\n<br \/>\n<br \/>\n--<br \/>\n<br \/>\n<\/span><span style=\"color:red;font-weight:bold;\">※ 来源:．兵马俑BBS bbs.xjtu.edu.cn．[FROM: 127.0.0.1]<\/span><br \/>\n<br \/>\n<span style=\"color:teal;font-weight:bold;\">※ 修改:．SYSOP 于 Nov 29 20:51:42 修改本文．[FROM: 127.0.0.1]<\/span><br \/>\n#attach api_sign.c<br \/>\n<br \/>\n#attach api_sign.h<br \/>\n<\/article>" 
+}
+```
+
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示查询成功；否则为错误码，并且不再返回其它字段。
+|-
+| attach
+| Json array
+| 该文章的附件列表
+|-
+| link
+| string
+| 附件文件地址
+|-
+| size
+| int
+| 附件大小，以字节为单位
+|-
+| can_edit
+| int
+| 当前用户能否编辑该文
+*0 不能
+*1 能
+|-
+| can_delete
+| int
+| 当前用户能否删除该文
+*0 不能
+*1 能
+|-
+| can_reply
+| int
+| 当前用户能否回复该文
+*0 不能
+*1 能
+|-
+| board
+| string
+| 该文所在板面
+|-
+| author
+| string
+| 文章作者
+|-
+| thread
+| int
+| 文章主题 ID
+|-
+| num
+| int
+| 该文章在其板面的序号，从0开始编号
+|-
+| content
+| string
+| 较长。以HTML格式返回文章的正文内容。
+|}
+
+否则仅包含错误码。
+
+==注意事项==
