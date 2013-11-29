@@ -1,0 +1,73 @@
+==说明==
+查询特定用户
+
+==URL==
+<u>/user/query</u>
+
+==请求方式==
+HTTP GET
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="1"|查询用户
+| userid
+| true
+| 待查询用户名
+|}
+
+==返回结果==
+若查询成功，返回如下格式：
+
+```
+{
+	"errcode":0,
+	"User": {
+		"UserID":"SYSOP",
+		"UserNickName":"SYSOP",
+		"LoginCounts":108,
+		"PostCounts":6
+	}
+}
+```
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示查询成功；否则为错误码，并且不再返回其它字段。
+|-
+| User
+| Json array
+| 用户信息
+|-
+| UserID
+| string
+| 用户 ID（全部由英文字母组成）
+|-
+| UserNickName
+| string
+| 用户昵称
+|-
+| LoginCounts
+| int
+| 登录次数
+|-
+| PostCounts
+| int
+| 发帖次数
+|}
+
+否则仅包含错误码。
+
+==注意事项==
+这是我们实现的第一个API功能
