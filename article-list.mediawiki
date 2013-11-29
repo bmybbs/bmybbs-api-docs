@@ -27,7 +27,7 @@ HTTP GET
 |-
 | secstr
 | true
-| 分区名，值为```0123456789GNHAC```中一个字符
+| 分区名，值为 ``0123456789GNHAC`` 中一个字符
 |-
 | rowspan="3"|美文推荐
 | type
@@ -36,11 +36,11 @@ HTTP GET
 |-
 | count
 | false
-| 希望查询的文章数量，默认为20篇。实际文章数可能小于count，所以最终返回文章数以实际情况为准。
+| 希望查询的文章数量，默认为20篇，取值不小于1。实际文章数可能小于 count，所以最终返回文章数以实际情况为准。
 |-
 | startnum
 | false
-| 从所有美文的第几篇起返回。默认为从最新文章起，倒推count篇，若总文章不足count篇，则从第一篇（最老一篇）开始输出。
+| 从所有推荐美文的第几篇起返回，取值不小于1。默认为从最新文章起，倒推 count 篇，若总文章不足 count 篇，则从第一篇（最老一篇）开始输出。
 |-
 | rowspan="3"|通知公告
 | type
@@ -49,11 +49,11 @@ HTTP GET
 |-
 | count
 | false
-| 希望查询的文章数量，默认为20篇。实际文章数可能小于count，所以最终返回文章数以实际情况为准。
+| 希望查询的文章数量，默认为20篇，取值不小于1。实际文章数可能小于 count，所以最终返回文章数以实际情况为准。
 |-
 | startnum
 | false
-| 从所有美文的第几篇起返回。默认为从最新文章起，倒推count篇，若总文章不足count篇，则从第一篇（最老一篇）开始输出。
+| 从所有通知公告的第几篇起返回，取值不小于1。默认为从最新文章起，倒推 count 篇，若总文章不足 count 篇，则从第一篇（最老一篇）开始输出。
 |-
 | rowspan="8"|版面文章
 | type
@@ -62,31 +62,33 @@ HTTP GET
 |-
 | board
 | true
-|
+| 查询版面名
 |-
 | btype
 | true
-|
-|-
-| startnum
-| true
-|
+| 返回文章列表模式
+*t 为主题模式
+*其他为一般模式
 |-
 | count
-| true
-|
+| false
+| 希望查询的文章数量，默认为20篇。实际文章数可能小于 count，所以最终返回文章数以实际情况为准。
+|-
+| startnum
+| false
+| 从该版所有文章的第几篇起返回，取值不小于1。默认为从最新文章起，倒推 count 篇，若总文章不足 count 篇，则从第一篇（最老一篇）开始输出。
 |-
 | userid
-| false
-|
+| true
+| 当前登录用户的 ID
 |-
 | sessid
-| false
-|
+| true
+| 当前用户的 session ID
 |-
 | appkey
 | true
-|
+| 当前使用的 APP 标识
 |-
 | rowspan="8"|同主题文章
 | type
@@ -95,31 +97,31 @@ HTTP GET
 |-
 | board
 | true
-|
+| 查询的版面名
 |-
 | thread
 | true
-|
-|-
-| startnum
-| true
-|
+| 查询的主题 ID
 |-
 | count
-| true
-|
+| false
+| 希望查询的文章数量，默认为20篇。实际文章数可能小于 count，所以最终返回文章数以实际情况为准。
+|-
+| startnum
+| false
+| 确定从该版的第几个主题起返回，取值不小于1。默认为从最新文章起，倒推 count 篇，若总文章不足 count 篇，则从第一篇（最老一篇）开始输出。
 |-
 | userid
-| false
-|
+| true
+| 当前登录用户的 ID
 |-
 | sessid
-| false
-|
+| true
+| 当前用户的 session ID
 |-
 | appkey
 | true
-|
+| 当前使用的 APP 标识
 |}
 
 ==返回结果==
@@ -166,11 +168,11 @@ HTTP GET
 |-
 | aid
 | int
-| 文章ID
+| 文章 ID
 |-
 | tid
 | int
-| 主题ID
+| 主题 ID
 |-
 | th_num
 | int
