@@ -132,3 +132,5 @@ HTTP GET
 否则仅包含错误码。
 
 ==注意事项==
+#若用户信息验证失败，则以 guest 用户的身份访问该文章。
+#注意与 [[article getRAWContent]] 的对比。
