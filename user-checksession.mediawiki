@@ -1,0 +1,54 @@
+==说明==
+检查用户 session 是否正确。
+
+==URL==
+<u>/user/checksession</u>
+
+==请求方式==
+HTTP POST
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="3"|登出
+| userid
+| true
+| 用户 ID
+|-
+| sessid
+| true
+| 用户 session ID
+|-
+| appkey
+| true
+| 应用标识
+|}
+
+==返回结果==
+若查询成功，返回如下格式：
+
+```
+{
+	"errcode": 0,
+}
+```
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0 表示用户 session 正确；否则为错误码。
+|}
+
+否则仅包含错误码。
+
+==注意事项==
