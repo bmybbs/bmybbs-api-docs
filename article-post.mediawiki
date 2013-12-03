@@ -15,7 +15,7 @@ HTTP POST
 ! 必选
 ! 说明
 |-
-| rowspan="6"|URL
+| rowspan="8"|URL
 | board
 | true
 | 文章发表到的版面
@@ -39,6 +39,18 @@ HTTP POST
 | token
 | true
 | 当前用户当前使用的 token
+|-
+| anony
+| false
+| 是否匿名发帖
+*不填写或值为空表示不匿名发帖
+*值为任意值表示匿名发帖
+|-
+| norep
+| false
+| 是否不允许回复
+*不填写或值为空表示允许回复
+*值为任意值表示不允许回复
 |-
 | rowspan="1"|Request Headers
 | Content-Length
