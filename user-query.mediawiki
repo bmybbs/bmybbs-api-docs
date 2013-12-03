@@ -1,5 +1,5 @@
 ==说明==
-查询特定用户
+查询自己或特定用户
 
 ==URL==
 <u>/user/query</u>
@@ -15,24 +15,69 @@ HTTP GET
 ! 必选
 ! 说明
 |-
-| rowspan="1"|查询用户
+| rowspan="3"|查询自己
 | userid
 | true
-| 待查询用户名
+| 当前用户 ID
+|-
+| sessid
+| true
+| 用户 session ID
+|-
+| appkey
+| true
+| 应用标识
+|-
+| rowspan="4"|查询他人
+| queryid
+| true
+| 待查询用户的 ID
+|-
+| userid
+| true
+| 当前用户 ID
+|-
+| sessid
+| true
+| 用户 session ID
+|-
+| appkey
+| true
+| 应用标识
 |}
 
 ==返回结果==
 若查询成功，返回如下格式：
 
+查询自己：
 ```
-{
-	"errcode":0,
-	"User": {
-		"UserID":"SYSOP",
-		"UserNickName":"SYSOP",
-		"LoginCounts":108,
-		"PostCounts":6
-	}
+{ 
+	"errcode": 0, 
+	"userid": "SYSOP", 
+	"login_counts": 176, 
+	"post_counts": 6, 
+	"unread_mail": 0, 
+	"unread_notify": 1, 
+	"job": "本站顾问团", 
+	"exp": 222, 
+	"perf": 47, 
+	"exp_level": "一般站友", 
+	"perf_level": "很好", 
+	"nickname": "SYSOP" 
+}
+```
+
+查询他人
+```
+{ 
+	"errocde": 0, 
+	"userid": "liuche", 
+	"login_counts": 7, 
+	"post_counts": 0, 
+	"job": "版主", 
+	"exp_level": "新手上路", 
+	"perf_level": "赶快加油", 
+	"nickname": "aaaaaaaaa" 
 }
 ```
 其中：
@@ -46,28 +91,53 @@ HTTP GET
 | int
 | 0表示查询成功；否则为错误码，并且不再返回其它字段。
 |-
-| User
-| Json array
-| 用户信息
-|-
-| UserID
+| userid
 | string
-| 用户 ID（全部由英文字母组成）
+| 被查询用户（下同）的 ID
 |-
-| UserNickName
-| string
-| 用户昵称
-|-
-| LoginCounts
+| login_counts
 | int
 | 登录次数
 |-
-| PostCounts
+| post_counts
 | int
 | 发帖次数
+|-
+| unread_mail
+| int
+| 未读邮件数
+|-
+| unread_notify
+| int
+| 未读提醒数
+|-
+| job
+| string
+| 担任职务
+|-
+| exp
+| int
+| 经验值，仅在查询自身中显示。
+|-
+| perf
+| int
+| 表现值，仅在查询自身中显示。
+|-
+| exp_level
+| string
+| 用户经验值等级
+|-
+| perf_level
+| string
+| 表现值等级
+|-
+| nickname
+| string
+| 用户昵称
 |}
 
 否则仅包含错误码。
 
 ==注意事项==
-这是我们实现的第一个API功能
+#若 queryid 和 userid 的值相同，任视为查询他人
+#这是我们实现的第一个API功能
