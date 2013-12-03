@@ -1,0 +1,115 @@
+==说明==
+回复已有的文章，产生一篇新的文章。
+
+==URL==
+<u>/article/reply</u>
+
+==请求方式==
+HTTP POST
+
+==请求参数==
+{|
+|-
+! 字段所处区段
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="11"|URL
+| board
+| true
+| 文章发表到的版面
+|-
+| title
+| true
+| 文章标题，按UTF-8编码
+|-
+| ref
+| true
+| 回复文章的文章 ID （ = filetime）
+|-
+| rid
+| true
+| 回复文章在该版面的序号 （= num）
+|-
+| th
+| true
+| 回复文章的主题 （= thread）
+|-
+| userid
+| true
+| 当前登录用户的 ID
+|-
+| sessid
+| true
+| 当前用户的 session ID
+|-
+| appkey
+| true
+| 当前使用的 APP 标识
+|-
+| token
+| true
+| 当前用户当前使用的 token
+|-
+| anony
+| false
+| 是否匿名发帖
+*不填写或值为空表示不匿名发帖
+*值为任意值表示匿名发帖
+|-
+| norep
+| false
+| 是否不允许回复
+*不填写或值为空表示允许回复
+*值为任意值表示不允许回复
+|-
+| rowspan="1"|Request Headers
+| Content-Length
+| false
+| Request body 的长度。建议填写。
+|-
+| rowspan="1"|Request Body
+| content
+| false
+| 文章正文
+*以UTF-8编码再转为URL码，在 java 语言中可以这样处理：java.net.URLEncoder.encode(content, "UTF-8")
+*假设文章正文为“天天向上”，那么编码后时间传输的字符应该是 “%E5%A4%A9%E5%A4%A9%E5%90%91%E4%B8%8A”
+*最终你的 Request Body 应该形如 “content=%E5%A4%A9%E5%A4%A9%E5%90%91%E4%B8%8A”
+|}
+
+==返回结果==
+若发帖成功，返回如下格式：
+
+```
+{ 
+	"errcode":0, 
+	"aid":1385902846, 
+	"token":"NFHCJEKB" 
+}
+```
+
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示发帖成功；否则为错误码，并且不再返回其它字段。
+|-
+| aid
+| int
+| 发表的文章的文章 ID
+|-
+| token
+| string
+| 给予当前用户的新 token。
+|}
+
+否则仅包含错误码。
+
+==注意事项==
+#十分建议在 Request Header 中加入Content-Length
