@@ -1,0 +1,139 @@
+==说明==
+获得指定版面的详细信息。
+
+==URL==
+<u>/board/info</u>
+
+==请求方式==
+HTTP GET
+
+==请求参数==
+{|
+|-
+! 模式
+! 参数字段
+! 必选
+! 说明
+|-
+| rowspan="4"|版面信息
+| bname
+| true
+| 被查询版面名
+|-
+| userid
+| true
+| 当前用户名
+|-
+| sessid
+| true
+| 当前用户 session ID
+|-
+| appkey
+| true
+| 应用标识
+|}
+
+==返回结果==
+若查询成功，返回如下格式：
+
+```
+{ 
+	"errcode": 0, 
+	"bm": [ 
+		"SYSOP", "liuche", null, null, "aaa", null, null, null, null, null, null, null, null, null, null, null
+	], 
+	"hot_topic": [
+		{
+			"tid": 1386062810, 
+			"num": 42, 
+			"title": "我要上头条！"
+		}
+	], 
+	"is_fav": 1, 
+	"voting": 0, 
+	"article_num": 55, 
+	"score": 0, 
+	"inboard_num": 2, 
+	"secstr": "0", 
+	"today_new": 14, 
+	"name": "sysop", 
+	"zh_name": "○ 站长的工作室"
+}
+```
+其中：
+{|
+|-
+! 字段
+! 类型
+! 说明
+|-
+| errcode
+| int
+| 0表示查询成功；否则为错误码，并且不再返回其它字段。
+|-
+| bm
+| Json array
+| 该数组共16位，其中非 null 元素表示版主用户 ID
+*前4位表示大版主
+*后12位表示小版主
+|-
+| hot_topic
+| Json array
+| 本版热门帖子
+|-
+| tid
+| int
+| 热门帖子主题 ID
+|-
+| num
+| int
+| 热门帖子在该版序号
+|-
+| title
+| string
+| 热门帖子标题
+|-
+| is_fav
+| int
+| 该版是否被当前用户收藏
+*0 不是
+*1 是
+|-
+| voting
+| int
+| 该版是否正在进行投票
+*0 不是
+*1 是
+|-
+| article_num
+| int
+| 该版文章总数
+|-
+| score
+| int
+| 该版人气值
+|-
+| inboard_num
+| int
+| 该版当前在线人数
+|-
+| secstr
+| string
+| 该版所在分区
+|-
+| today_new
+| int
+| 该版今日新增文章数，以系统时间为准。
+|-
+| name
+| string
+| 版面英文名
+|-
+| zh_name
+| string
+| 版面中文名
+|}
+
+否则仅包含错误码。
+
+==注意事项==
