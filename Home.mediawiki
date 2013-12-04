@@ -21,6 +21,14 @@
 ! 说明
 |-
 | [https://github.com/bmybbs/api/wiki/article-list /article/list] || 文章列表
+|-
+| [https://github.com/bmybbs/api/wiki/article-getHTMLContent /article/getHTMLContent] || 以HTML格式文章获得文章内容
+|-
+| [https://github.com/bmybbs/api/wiki/article-getRAWContent /article/getRAWContent] || 以原始格式获得文章内容
+|-
+| [https://github.com/bmybbs/api/wiki/article-post /article/post] || 发表文章
+|-
+| [https://github.com/bmybbs/api/wiki/article-reply /article/reply] || 回复文章
 |}
 
 ==版面接口==
@@ -30,4 +38,9 @@
 ! 说明
 |-
 | [https://github.com/bmybbs/api/wiki/board-list /board/list] || 版面列表
+|-
+| [https://github.com/bmybbs/api/wiki/board-info /board/info] || 版面详细信息
 |}
+
+==错误码==
+See [https://github.com/bmybbs/api/wiki/error-code 错误码]
