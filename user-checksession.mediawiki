@@ -15,7 +15,7 @@ HTTP POST
 ! 必选
 ! 说明
 |-
-| rowspan="3"|登出
+| rowspan="3"|session检查
 | userid
 | true
 | 用户 ID
