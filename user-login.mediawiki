@@ -9,7 +9,7 @@ API 登录功能，成功登录将会返回 <code>SessionID</code> 和 <code>Tok
 
 ==请求方式==
 
-HTTP POST
+HTTP GET
 
 ==请求参数==
 {|
