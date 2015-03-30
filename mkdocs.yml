@@ -1,0 +1,6 @@
+site_name: BMYBBS API Documentation
+theme: readthedocs
+repo_url: https://bithub.com/bmybbs/bmybbs-api-docs
+pages:
+- ['index.md', 'Home']
+
