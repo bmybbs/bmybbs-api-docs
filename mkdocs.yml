@@ -1,6 +1,8 @@
-site_name: BMYBBS API Documentation
-theme: readthedocs
+site_name: BMYBBS 接口使用手册
+theme: cosmo
 repo_url: https://github.com/bmybbs/bmybbs-api-docs
 pages:
 - ['index.md', 'Home']
-
+- ['article/list-top10.md', '文章', '列表-十大热门']
+- ['article/list-board.md', '文章', '列表-版面文章']
+- ['article/list-thread.md', '文章', '列表-同主题文章']
