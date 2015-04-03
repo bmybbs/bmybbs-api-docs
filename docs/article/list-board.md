@@ -23,6 +23,8 @@ HTTP GET
 
 ## 返回结果（示例）
 
+### 一般模式
+
 ```JSON
 {
     "errcode":0,
@@ -54,4 +56,52 @@ HTTP GET
 }
 ```
 
+### 主题模式
+
+```JSON
+{
+    "errcode":0,
+    "articlelist":[
+        {
+            "type":1,
+            "aid":1425875627,
+            "tid":1425875627,
+            "th_num":5,
+            "mark":36,
+            "num":8963,
+            "th_size":90029,
+            "th_commenter":[
+                "zuojian",
+                "zousuifeng",
+                "Qinghai"
+            ],
+            "board":"sysop",
+            "title":"第十二届兵马俑BBS乡音乡情足球联赛报名通知",
+            "author":"maxif"
+        },
+        {
+            "type":1,
+            "aid":1425977944,
+            "tid":1425977944,
+            "th_num":9,
+            "mark":0,
+            "num":8968,
+            "th_size":541,
+            "th_commenter":[
+                "hyclnan",
+                "ffddmm",
+                "Flymilk",
+                "zixu",
+                "Like",
+                "ArthurF",
+                "KnightX"
+            ],
+            "board":"sysop",
+            "title":"[转载] 关于在全校计算机上安装360天擎系统的通知",
+            "author":"nic"
+        },
+        { ... }
+    ]
+}
+```
 ## 注意事项
